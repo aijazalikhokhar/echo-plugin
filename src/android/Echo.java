@@ -1,32 +1,36 @@
-package com.plugin.echo;
-
+package com.mexyon.calendar;
+ 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
-import org.apache.cordova.PluginResult;
+import org.json.JSONObject;
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
-/**
- * This class echoes a string called from JavaScript.
- */
+import android.app.Activity;
+import android.content.Intent;
+
 public class Echo extends CordovaPlugin {
-
+    public static final String ACTION_SHOW_ECHO = "showEcho";
+    
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-        if (action.equals("echo")) {
-            String message = args.getString(0); 
-            this.echo(message, callbackContext);
-            return true;
-        }
-        return false;
-    }
-
-    private void echo(String message, CallbackContext callbackContext) {
-        if (message != null && message.length() > 0) { 
-            callbackContext.success(message);
-        } else {
-            callbackContext.error("Expected one non-empty string argument.");
-        }
+        try {
+            if (ACTION_SHOW_ECHO.equals(action)) { 
+				if(args.getString(0) !=null){
+						callbackContext.success(args.getString(0));
+						return true;
+					}else{
+						callbackContext.error("Invalid action");
+						return false;
+					}
+             
+               //this.cordova.getActivity().startActivity(calIntent);
+               
+            }
+        } catch(Exception e) {
+            System.err.println("Exception: " + e.getMessage());
+            callbackContext.error(e.getMessage());
+            return false;
+        } 
     }
 }
