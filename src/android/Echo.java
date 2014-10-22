@@ -1,4 +1,4 @@
-package com.mexyon.calendar;
+package com.mexyon.echo;
  
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
@@ -16,20 +16,16 @@ public class Echo extends CordovaPlugin {
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         try {
             if (ACTION_SHOW_ECHO.equals(action)) { 
-				if(args.getString(0) !=null){
-						callbackContext.success(args.getString(0));
-						return true;
-					}else{
-						callbackContext.error("Invalid action");
-						return false;
-					}
-             
-               //this.cordova.getActivity().startActivity(calIntent);
-               
-            }
+				if(args.getString(0) != null){
+					callbackContext.success(args.getString(0));
+					return true;
+				}
+			}
+			callbackContext.error("Invalid action");
+			return false;
         } catch(Exception e) {
             System.err.println("Exception: " + e.getMessage());
-            callbackContext.error(e.getMessage());
+            callbackContext.error("Eroory: "+e.getMessage());
             return false;
         } 
     }
