@@ -8,6 +8,7 @@ import org.json.JSONException;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.widget.Toast;
 
 public class Echo extends CordovaPlugin {
     public static final String ACTION_SHOW_ECHO = "showEcho";
@@ -17,6 +18,7 @@ public class Echo extends CordovaPlugin {
         try {
             if (ACTION_SHOW_ECHO.equals(action)) { 
 				if(args.getString(0) != null){
+					Toast.makeText(this.cordova.getActivity(), args.getString(0), 1).show();
 					callbackContext.success(args.getString(0));
 					return true;
 				}
