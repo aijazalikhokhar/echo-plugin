@@ -1,7 +1,7 @@
-CalendarPlugin
+Android Toast Plugin
 ==============
 
-Sample PhoneGap plugin to Generate toast in android
+Sample PhoneGap plugin to Generate Native Toast message.
 
 Install
 ========
